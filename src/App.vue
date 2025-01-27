@@ -1,6 +1,18 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+
+
+interface iKun {
+  name:string
+}
+
+const ikun: iKun = {
+  name: 'Helloikun',
+}
+
+console.log(ikun)
+
 </script>
 
 <template>
