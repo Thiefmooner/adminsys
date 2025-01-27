@@ -7,3 +7,5 @@ trim_trailing_whitespace = true
 
 end_of_line = lf
 max_line_length = 100
+
+#多个人跨平台编码，就需要用到editorconfig插件，来读取这里的.editorconfig文件
