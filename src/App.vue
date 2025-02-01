@@ -1,14 +1,4 @@
-<script setup lang="ts">
-interface iKun {
-  name: string
-}
-
-const ikun: iKun = {
-  name: 'Helloikun'
-}
-
-console.log(ikun)
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="app">

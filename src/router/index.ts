@@ -5,7 +5,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '../views/main/main.vue' //预留路由导航首位，未登录状态下，回到登录
+      redirect: '/main' //预留路由导航首位，未登录状态下，回到登录
     },
     {
       path: '/login',
