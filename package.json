@@ -12,6 +12,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "normalize.css": "^8.0.1",
     "pinia": "^2.3.1",
     "vue": "^3.5.13",
