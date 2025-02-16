@@ -1,7 +1,5 @@
 <template>
   <div class="login">这是loginVue文件</div>
-  <el-button type="primary">Primary</el-button
-  ><!--step3-->
 </template>
 
 <script setup lang="ts">
