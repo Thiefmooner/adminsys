@@ -11,6 +11,7 @@ hyRequest
   .then((res) => {
     console.log(res)
   })
+console.log(import.meta.env.VITE_NAME) //测试用，看VITE_NAME根据环境变化，出什么值
 </script>
 
 <style lang="less" scoped>

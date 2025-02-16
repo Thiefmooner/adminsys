@@ -5,6 +5,5 @@ if (import.meta.env.MODE === 'production') {
 } else {
   BASE_URL = 'http://coderwhy.dev:8000'
 }
-console.log(BASE_URL)
 export { BASE_URL }
 export const TIME_OUT = 10000
