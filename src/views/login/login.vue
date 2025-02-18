@@ -6,6 +6,12 @@
 
 <style lang="less" scoped>
 .login {
-  color: aqua;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%; //为什么这里宽高可以使用100%了?因为父级APP已经占满了
+  height: 100%;
+  background: url('@/assets/image/login-bg.svg'); //改成@开头就好了，..开头提示有错误
 }
 </style>
