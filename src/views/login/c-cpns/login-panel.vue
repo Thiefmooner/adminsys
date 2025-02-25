@@ -1,7 +1,12 @@
 <template>
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
-    <div class="tabs">tabs</div>
+    <div class="tabs">
+      <el-tabs type="border-card" stretch>
+        <el-tab-pane label="账号登录">账号登录</el-tab-pane>
+        <el-tab-pane label="手机登录">手机登录</el-tab-pane>
+      </el-tabs>
+    </div>
     <div class="control-account">
       <el-checkbox v-model="isRemember" label="记住密码" size="large" />
       <el-link type="primary">忘记密码</el-link>
