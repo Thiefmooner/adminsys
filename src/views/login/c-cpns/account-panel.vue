@@ -55,7 +55,7 @@ function loginAction() {
       //return true
     } else {
       //return false
-      ElMessage.error('Oops, this is a error message.')
+      ElMessage.error('Oops, 达咩.')
     }
   })
 }
