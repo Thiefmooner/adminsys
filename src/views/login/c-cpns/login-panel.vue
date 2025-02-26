@@ -12,7 +12,7 @@
               <span class="text">帐号登录</span>
             </div>
           </template>
-          <AccountPanel />
+          <AccountPanel ref="accountRef" />
         </el-tab-pane>
         <el-tab-pane label="手机登录" name="phone">
           <template #label>
@@ -45,10 +45,16 @@ import { ref } from 'vue'
 import AccountPanel from '@/views/login/c-cpns/account-panel.vue'
 
 import { Cellphone, UserFilled } from '@element-plus/icons-vue'
+
+const accountRef = ref<InstanceType<typeof AccountPanel>>()
 const activeName = ref('account')
 const isRemember = ref(false)
 const listenLoginAction = function () {
-  console.log(activeName.value)
+  if (activeName.value === 'account') {
+    accountRef.value?.loginAction()
+  } else {
+    console.log('手机号登录')
+  }
 }
 </script>
 
