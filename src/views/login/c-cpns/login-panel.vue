@@ -12,8 +12,7 @@
               <span class="text">帐号登录</span>
             </div>
           </template>
-          <div>哈哈哈</div>
-          <div>呵呵呵</div>
+          <AccountPanel />
         </el-tab-pane>
         <el-tab-pane label="手机登录" name="phone">
           <template #label>
@@ -43,6 +42,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import AccountPanel from '@/views/login/c-cpns/account-panel.vue'
+
 import { Cellphone, UserFilled } from '@element-plus/icons-vue'
 const activeName = ref('account')
 const isRemember = ref(false)
