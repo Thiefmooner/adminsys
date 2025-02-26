@@ -1,7 +1,14 @@
 <template>
   <div class="panel">
     <!-- :model="" el-form整个表单绑定account对象-->
-    <el-form :model="account" label-width="60px" :rules="rules" status-icon>
+    <!--ref是很重要的属性，可以用于获取表单实例，不用原生jquery获取DOM-->
+    <el-form
+      ref="formRef"
+      :model="account"
+      label-width="60px"
+      :rules="rules"
+      status-icon
+    >
       <!--这个prop非常重要，他标识着，el-form绑的rules到了账号这里要寻找name的规则-->
       <el-form-item label="账号" prop="name">
         <el-input v-model="account.name" />
@@ -14,8 +21,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import type { FormRules } from 'element-plus'
+import { reactive, ref } from 'vue'
+import { type FormRules, type ElForm, ElMessage } from 'element-plus'
+
+const formRef = ref<InstanceType<typeof ElForm>>() //这个东西没学过，记得补一下
 const account = reactive({
   name: '',
   pwd: ''
@@ -40,7 +49,15 @@ const rules: FormRules = reactive({
   ]
 })
 function loginAction() {
-  console.log('账号', account.name, account.pwd)
+  formRef.value?.validate((valid: boolean) => {
+    if (valid) {
+      console.log('sucess')
+      //return true
+    } else {
+      //return false
+      ElMessage.error('Oops, this is a error message.')
+    }
+  })
 }
 defineExpose({
   loginAction
