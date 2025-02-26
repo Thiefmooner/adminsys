@@ -2,16 +2,40 @@
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
     <div class="tabs">
-      <el-tabs type="border-card" stretch>
-        <el-tab-pane label="账号登录">账号登录</el-tab-pane>
-        <el-tab-pane label="手机登录">手机登录</el-tab-pane>
+      <!--activeName是选中tabs的name值，
+      你选择哪个tabs，activeName就是那个tabs的name值-->
+      <el-tabs type="border-card" stretch v-model="activeName">
+        <el-tab-pane label="账号登录" name="account">
+          <template #label>
+            <div class="label">
+              <el-icon><user-filled /></el-icon>
+              <span class="text">帐号登录</span>
+            </div>
+          </template>
+          <div>哈哈哈</div>
+          <div>呵呵呵</div>
+        </el-tab-pane>
+        <el-tab-pane label="手机登录" name="phone">
+          <template #label>
+            <div class="label">
+              <el-icon><Cellphone /></el-icon>
+              <span class="text">手机登录</span>
+            </div>
+          </template>
+          <div>hhh</div>
+          <div>hhhhh</div>
+        </el-tab-pane>
       </el-tabs>
     </div>
     <div class="control-account">
       <el-checkbox v-model="isRemember" label="记住密码" size="large" />
       <el-link type="primary">忘记密码</el-link>
     </div>
-    <el-button class="login-btn" type="primary" size="large"
+    <el-button
+      class="login-btn"
+      type="primary"
+      size="large"
+      @click="listenLoginAction"
       >立即登录</el-button
     >
   </div>
@@ -19,7 +43,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { Cellphone, UserFilled } from '@element-plus/icons-vue'
+const activeName = ref('account')
 const isRemember = ref(false)
+const listenLoginAction = function () {
+  console.log(activeName.value)
+}
 </script>
 
 <style lang="less" scoped>
@@ -39,6 +68,15 @@ const isRemember = ref(false)
     margin-top: 10px;
     width: 100%;
     //--el-button-size: 50px;
+  }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .text {
+    margin-left: 10px;
   }
 }
 </style>
