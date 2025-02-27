@@ -23,6 +23,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { type FormRules, type ElForm, ElMessage } from 'element-plus'
+import { accountLoginRequest } from '@/service/login/login.ts'
 
 const formRef = ref<InstanceType<typeof ElForm>>() //这个东西没学过，记得补一下
 const account = reactive({
@@ -51,8 +52,12 @@ const rules: FormRules = reactive({
 function loginAction() {
   formRef.value?.validate((valid: boolean) => {
     if (valid) {
-      console.log('sucess')
-      //return true
+      const name = account.name
+      const pwd = account.pwd
+      // accountLoginRequest(account)也可以
+      accountLoginRequest(account).then((res) => {
+        console.log(res)
+      })
     } else {
       //return false
       ElMessage.error('Oops, 达咩.')
