@@ -24,9 +24,12 @@
 import { reactive, ref } from 'vue'
 import { type FormRules, type ElForm, ElMessage } from 'element-plus'
 import { accountLoginRequest } from '@/service/login/login.ts'
+import useLoginStore from '@/store/login/login.ts'
+import type { IAccount } from '@/store/type'
 
+const loginStore = useLoginStore()
 const formRef = ref<InstanceType<typeof ElForm>>() //这个东西没学过，记得补一下
-const account = reactive({
+const account = reactive<IAccount>({
   name: '',
   pwd: ''
 })
@@ -55,9 +58,7 @@ function loginAction() {
       const name = account.name
       const pwd = account.pwd
       // accountLoginRequest(account)也可以
-      accountLoginRequest(account).then((res) => {
-        console.log(res)
-      })
+      loginStore.loginAccountAction({ name, pwd })
     } else {
       //return false
       ElMessage.error('Oops, 达咩.')

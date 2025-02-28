@@ -1,5 +1,6 @@
 import { hyRequest } from '@/service'
-export function accountLoginRequest(account: any) {
+import type { IAccount } from '@/store/type'
+export function accountLoginRequest(account: IAccount) {
   return hyRequest.post({
     url: '/login',
     data: account
