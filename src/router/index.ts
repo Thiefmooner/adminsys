@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-
+import { localCache } from '@/utils/cache.ts'
+import { LOGIN_TOKEN } from '@/global/global_variables'
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -21,5 +22,15 @@ const router = createRouter({
     }
   ]
 })
-
+//导航守卫
+//返回值决定导航的路径
+router.beforeEach((to, from) => {
+  //如果访问main，先检查是否有token
+  if (to.path === '/main') {
+    const token = localCache.getCache(LOGIN_TOKEN)
+    if (!token) {
+      return '/login'
+    }
+  }
+})
 export default router
