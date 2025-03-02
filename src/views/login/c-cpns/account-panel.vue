@@ -26,12 +26,14 @@ import { type FormRules, type ElForm, ElMessage } from 'element-plus'
 import { accountLoginRequest } from '@/service/login/login.ts'
 import useLoginStore from '@/store/login/login.ts'
 import type { IAccount } from '@/store/type'
-
+import { localCache } from '@/utils/cache.ts'
+import { NAME, PASSWORD } from '@/global/global_variables'
 const loginStore = useLoginStore()
 const formRef = ref<InstanceType<typeof ElForm>>() //这个东西没学过，记得补一下
+//记住密码的关键点就在这里，记住密码后登陆再退出，要让缓存里的账号密码自动显示
 const account = reactive<IAccount>({
-  name: '',
-  pwd: ''
+  name: localCache.getCache(NAME) ?? '',
+  pwd: localCache.getCache(PASSWORD) ?? ''
 })
 //定义校验规则
 const rules: FormRules = reactive({
@@ -52,13 +54,22 @@ const rules: FormRules = reactive({
     }
   ]
 })
-function loginAction() {
+function loginAction(isRemember: boolean) {
   formRef.value?.validate((valid: boolean) => {
     if (valid) {
       const name = account.name
       const pwd = account.pwd
       // accountLoginRequest(account)也可以
-      loginStore.loginAccountAction({ name, pwd })
+      loginStore.loginAccountAction({ name, pwd }).then((res) => {
+        //记住密码为true的话，setcache
+        if (isRemember) {
+          localCache.setCache(NAME, name)
+          localCache.setCache(PASSWORD, pwd)
+        } else {
+          localCache.removeCache(NAME)
+          localCache.removeCache(PASSWORD)
+        }
+      })
     } else {
       //return false
       ElMessage.error('Oops, 达咩.')

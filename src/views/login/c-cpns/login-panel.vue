@@ -48,10 +48,10 @@ import { Cellphone, UserFilled } from '@element-plus/icons-vue'
 
 const accountRef = ref<InstanceType<typeof AccountPanel>>()
 const activeName = ref('account')
-const isRemember = ref(false)
+const isRemember = ref(false) //记住密码默认没选择
 const listenLoginAction = function () {
   if (activeName.value === 'account') {
-    accountRef.value?.loginAction()
+    accountRef.value?.loginAction(isRemember.value)
   } else {
     console.log('手机号登录')
   }
