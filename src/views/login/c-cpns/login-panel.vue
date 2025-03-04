@@ -21,8 +21,7 @@
               <span class="text">手机登录</span>
             </div>
           </template>
-          <div>hhh</div>
-          <div>hhhhh</div>
+          <PhonePanel />
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -43,6 +42,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import AccountPanel from '@/views/login/c-cpns/account-panel.vue'
+import PhonePanel from '@/views/login/c-cpns/phone-panel.vue'
 
 import { Cellphone, UserFilled } from '@element-plus/icons-vue'
 

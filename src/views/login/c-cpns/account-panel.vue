@@ -1,5 +1,5 @@
 <template>
-  <div class="panel">
+  <div class="account-panel">
     <!-- :model="" el-form整个表单绑定account对象-->
     <!--ref是很重要的属性，可以用于获取表单实例，不用原生jquery获取DOM-->
     <el-form
