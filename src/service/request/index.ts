@@ -7,7 +7,7 @@ class HYRequest {
 
   constructor(config: HYRequestConfig) {
     this.instance = axios.create(config)
-
+    // 每个instance实例都添加拦截器
     this.instance.interceptors.request.use(
       (config) => {
         //console.log('全局请求成功的拦截')
@@ -28,6 +28,7 @@ class HYRequest {
         return error
       }
     )
+    // 针对特定的hyRequest实例添加拦截器
     this.instance.interceptors.request.use(
       config.interceptors?.requestSuccessFn,
       config.interceptors?.requestFailureFn
@@ -37,6 +38,8 @@ class HYRequest {
       config.interceptors?.responseFailureFn
     )
   }
+  // 封装网络请求的方法
+  // T => IHomeData
   request<T = any>(config: HYRequestConfig<T>) {
     if (config.interceptors?.requestSuccessFn) {
       config = config.interceptors.requestSuccessFn(config)

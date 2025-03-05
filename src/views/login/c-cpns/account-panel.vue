@@ -60,7 +60,8 @@ function loginAction(isRemember: boolean) {
       const name = account.name
       const pwd = account.pwd
       // accountLoginRequest(account)也可以
-      loginStore.loginAccountAction({ name, pwd }).then((res) => {
+
+      loginStore.loginAccountAction({ name, pwd }).then(() => {
         //记住密码为true的话，setcache
         if (isRemember) {
           localCache.setCache(NAME, name)
