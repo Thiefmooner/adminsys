@@ -21,7 +21,7 @@ const useLoginStore = defineStore('login', {
 
       //3.获取用户详情信息role
       const res = await getUserInfoById(id)
-      //console.log(res)
+      console.log(res)
 
       //4.转到main
       router.push('/main')

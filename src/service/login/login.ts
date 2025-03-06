@@ -11,6 +11,10 @@ export function accountLoginRequest(account: IAccount) {
 
 export function getUserInfoById(id: number) {
   return hyRequest.get({
-    url: `/getUserInfoById/${id}`
+    url: `/getUserInfoById`,
+    params: { id },
+    headers: {
+      Authorization:'Bearer' + localCache.getCache(LOGIN_TOKEN)
+    },
   })
 }
