@@ -59,7 +59,7 @@ function loginAction(isRemember: boolean) {
     if (valid) {
       const name = account.name
       const password = account.password
-      // accountLoginRequest(account)也可以
+
 
       loginStore.loginAccountAction({ name, password }).then(() => {
         //记住密码为true的话，setcache
