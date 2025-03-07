@@ -28,29 +28,15 @@ class HYRequest {
         return error
       }
     )
-    // 针对特定的hyRequest实例添加拦截器
-    this.instance.interceptors.request.use(
-      config.interceptors?.requestSuccessFn,
-      config.interceptors?.requestFailureFn
-    )
-    this.instance.interceptors.response.use(
-      config.interceptors?.responseSuccessFn,
-      config.interceptors?.responseFailureFn
-    )
   }
   // 封装网络请求的方法
   // T => IHomeData
   request<T = any>(config: HYRequestConfig<T>) {
-    if (config.interceptors?.requestSuccessFn) {
-      config = config.interceptors.requestSuccessFn(config)
-    }
+
     return new Promise<T>((resolve, reject) => {
       this.instance
         .request<any, T>(config)
         .then((res) => {
-          if (config.interceptors?.responseSuccessFn) {
-            res = config.interceptors.responseSuccessFn(res)
-          }
           resolve(res)
         })
         .catch((err) => {

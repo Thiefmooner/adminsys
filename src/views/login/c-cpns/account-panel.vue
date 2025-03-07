@@ -13,8 +13,8 @@
       <el-form-item label="账号" prop="name">
         <el-input v-model="account.name" />
       </el-form-item>
-      <el-form-item label="密码" prop="pwd">
-        <el-input v-model="account.pwd" show-password />
+      <el-form-item label="密码" prop="password">
+        <el-input v-model="account.password" show-password />
       </el-form-item>
     </el-form>
   </div>
@@ -33,7 +33,7 @@ const formRef = ref<InstanceType<typeof ElForm>>() //这个东西没学过，记
 //记住密码的关键点就在这里，记住密码后登陆再退出，要让缓存里的账号密码自动显示
 const account = reactive<IAccount>({
   name: localCache.getCache(NAME) ?? '',
-  pwd: localCache.getCache(PASSWORD) ?? ''
+  password: localCache.getCache(PASSWORD) ?? ''
 })
 //定义校验规则
 const rules: FormRules = reactive({
@@ -45,7 +45,7 @@ const rules: FormRules = reactive({
       trigger: 'change'
     }
   ],
-  pwd: [
+  password: [
     { required: true, message: '必须输入密码', trigger: 'blur' },
     {
       pattern: /^[a-z0-9]{3,}$/,
@@ -58,14 +58,14 @@ function loginAction(isRemember: boolean) {
   formRef.value?.validate((valid: boolean) => {
     if (valid) {
       const name = account.name
-      const pwd = account.pwd
+      const password = account.password
       // accountLoginRequest(account)也可以
 
-      loginStore.loginAccountAction({ name, pwd }).then(() => {
+      loginStore.loginAccountAction({ name, password }).then(() => {
         //记住密码为true的话，setcache
         if (isRemember) {
           localCache.setCache(NAME, name)
-          localCache.setCache(PASSWORD, pwd)
+          localCache.setCache(PASSWORD, password)
         } else {
           localCache.removeCache(NAME)
           localCache.removeCache(PASSWORD)

@@ -14,7 +14,6 @@ const useLoginStore = defineStore('login', {
       //1.登录获取token等信息
       const id = loginResult.data.id
       this.token = loginResult.data.token
-      const name = loginResult.data.name
 
       //2.localStorage本地缓存token
       localCache.setCache(LOGIN_TOKEN, this.token)
