@@ -24,8 +24,9 @@ function quitLogin() {
 
 <style lang="less" scoped>
 .main{
+  height: 100%;
   .main-container {
-
+    height: 100%;
   .el-aside{
     background-color: palegoldenrod;
   }
