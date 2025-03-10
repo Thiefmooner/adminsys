@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {Monitor} from "@element-plus/icons-vue";
+
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -16,45 +18,42 @@ const handleClose = (key: string, keyPath: string[]) => {
     </div>
     <!--菜单-->
     <div class="menu">
-      <!--1.el-menu是整个菜单-->
-      <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
-      >
-        <!--2.el-sub-menu是第一级子菜单，且可以展开-->
-        <el-sub-menu index="1">
+      <!--el-menu是整个菜单-->
+      <el-menu>
+        <!--4个一模一样的el-sub-menu-->
+        <el-sub-menu>
+          <!-- <template #title>封住了图标和span标题,图标必须这么做-->
           <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
+            <el-icon><Monitor /></el-icon>
+            <span>系统总览</span>
           </template>
-          <!--3.el-menu-item-group是给el-menu-item分组用的，且不能展开，不能交互-->
-          <el-menu-item-group title="Group One">
-            <!--4.el-menu-item是可以点击的小item-->
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item two</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title>item four</template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
-          </el-sub-menu>
+          <el-menu-item>核心技术</el-menu-item>
+          <el-menu-item>商品统计</el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="2">
-          <el-icon><icon-menu /></el-icon>
-          <span>Navigator Two</span>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <el-icon><document /></el-icon>
-          <span>Navigator Three</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <el-icon><setting /></el-icon>
-          <span>Navigator Four</span>
-        </el-menu-item>
+        <el-sub-menu>
+          <template #title>
+            <el-icon><Monitor /></el-icon>
+            <span>系统总览</span>
+          </template>
+          <el-menu-item>核心技术</el-menu-item>
+          <el-menu-item>商品统计</el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu>
+          <template #title>
+            <el-icon><Monitor /></el-icon>
+            <span>系统总览</span>
+          </template>
+          <el-menu-item>核心技术</el-menu-item>
+          <el-menu-item>商品统计</el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu>
+          <template #title>
+            <el-icon><Monitor /></el-icon>
+            <span>系统总览</span>
+          </template>
+          <el-menu-item>核心技术</el-menu-item>
+          <el-menu-item>商品统计</el-menu-item>
+        </el-sub-menu>
       </el-menu>
     </div>
   </div>
