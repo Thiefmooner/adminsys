@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Monitor} from "@element-plus/icons-vue";
+import {Monitor, Setting, ShoppingBag} from "@element-plus/icons-vue";
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -23,6 +23,7 @@ const handleClose = (key: string, keyPath: string[]) => {
         <!--4个一模一样的el-sub-menu-->
         <el-sub-menu>
           <!-- <template #title>封住了图标和span标题,图标必须这么做-->
+          <!--系统总览-->
           <template #title>
             <el-icon><Monitor /></el-icon>
             <span>系统总览</span>
@@ -30,29 +31,32 @@ const handleClose = (key: string, keyPath: string[]) => {
           <el-menu-item>核心技术</el-menu-item>
           <el-menu-item>商品统计</el-menu-item>
         </el-sub-menu>
+        <!--系统管理-->
         <el-sub-menu>
           <template #title>
-            <el-icon><Monitor /></el-icon>
-            <span>系统总览</span>
+            <el-icon><Setting /></el-icon>
+            <span>系统设置</span>
           </template>
-          <el-menu-item>核心技术</el-menu-item>
+          <el-menu-item>用户管理</el-menu-item>
+          <el-menu-item>部门管理</el-menu-item>
+        </el-sub-menu>
+        <!--商品中心-->
+        <el-sub-menu>
+          <template #title>
+            <el-icon><ShoppingBag/></el-icon>
+            <span>商品中心</span>
+          </template>
+          <el-menu-item>商品细节</el-menu-item>
           <el-menu-item>商品统计</el-menu-item>
         </el-sub-menu>
+        <!--随便聊天-->
         <el-sub-menu>
           <template #title>
             <el-icon><Monitor /></el-icon>
-            <span>系统总览</span>
+            <span>随便聊天</span>
           </template>
-          <el-menu-item>核心技术</el-menu-item>
-          <el-menu-item>商品统计</el-menu-item>
-        </el-sub-menu>
-        <el-sub-menu>
-          <template #title>
-            <el-icon><Monitor /></el-icon>
-            <span>系统总览</span>
-          </template>
-          <el-menu-item>核心技术</el-menu-item>
-          <el-menu-item>商品统计</el-menu-item>
+          <el-menu-item>会员信息</el-menu-item>
+          <el-menu-item>会员统计</el-menu-item>
         </el-sub-menu>
       </el-menu>
     </div>
