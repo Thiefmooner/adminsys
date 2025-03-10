@@ -35,6 +35,17 @@ function quitLogin() {
     height: 100%;
   .el-aside{
     background-color: #141414;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 200px;
+    text-align: left;
+    cursor: pointer;
+    transition: width 0.3s linear;
+    scrollbar-width: none ;/* firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .el-header {
     background-color: skyblue;
