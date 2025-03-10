@@ -34,7 +34,7 @@ function quitLogin() {
   .main-container {
     height: 100%;
   .el-aside{
-    background-color: palegoldenrod;
+    background-color: #141414;
   }
   .el-header {
     background-color: skyblue;

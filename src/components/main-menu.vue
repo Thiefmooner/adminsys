@@ -19,7 +19,7 @@ const handleClose = (key: string, keyPath: string[]) => {
     <!--菜单-->
     <div class="menu">
       <!--el-menu是整个菜单-->
-      <el-menu>
+      <el-menu text-color="#b7bdc3" active-text-color="#fff" background-color="#001529">
         <!--4个一模一样的el-sub-menu-->
         <el-sub-menu>
           <!-- <template #title>封住了图标和span标题,图标必须这么做-->
@@ -65,7 +65,6 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 <style scoped lang="less">
 .main-menu {
-
   .menu-logo{
     display: flex;
     flex-direction: row;
@@ -85,8 +84,21 @@ const handleClose = (key: string, keyPath: string[]) => {
       white-space: nowrap;
     }
   }
-  .menu{
-
+}
+.el-menu{
+  border-right:none;
+  user-select: none;
+}
+.el-sub-menu{
+  .el-menu-item{
+    padding-left: 50px !important;
+    background-color: black;
+  }
+  .el-menu-item:hover{
+    color: white;
+  }
+  .el-menu-item.is-active{
+    color: blue;
   }
 }
 </style>
