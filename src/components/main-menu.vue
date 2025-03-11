@@ -1,14 +1,3 @@
-<script setup lang="ts">
-import {Monitor, Setting, ShoppingBag} from "@element-plus/icons-vue";
-
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-</script>
-
 <template>
   <div class="main-menu">
     <!--logo-->
@@ -20,48 +9,40 @@ const handleClose = (key: string, keyPath: string[]) => {
     <div class="menu">
       <!--el-menu是整个菜单-->
       <el-menu text-color="#b7bdc3" active-text-color="#fff" background-color="#001529">
-        <!--4个一模一样的el-sub-menu-->
-        <el-sub-menu>
-          <!-- <template #title>封住了图标和span标题,图标必须这么做-->
-          <!--系统总览-->
-          <template #title>
-            <el-icon><Monitor /></el-icon>
-            <span>系统总览</span>
-          </template>
-          <el-menu-item>核心技术</el-menu-item>
-          <el-menu-item>商品统计</el-menu-item>
-        </el-sub-menu>
-        <!--系统管理-->
-        <el-sub-menu>
-          <template #title>
-            <el-icon><Setting /></el-icon>
-            <span>系统设置</span>
-          </template>
-          <el-menu-item>用户管理</el-menu-item>
-          <el-menu-item>部门管理</el-menu-item>
-        </el-sub-menu>
-        <!--商品中心-->
-        <el-sub-menu>
-          <template #title>
-            <el-icon><ShoppingBag/></el-icon>
-            <span>商品中心</span>
-          </template>
-          <el-menu-item>商品细节</el-menu-item>
-          <el-menu-item>商品统计</el-menu-item>
-        </el-sub-menu>
-        <!--随便聊天-->
-        <el-sub-menu>
-          <template #title>
-            <el-icon><Monitor /></el-icon>
-            <span>随便聊天</span>
-          </template>
-          <el-menu-item>会员信息</el-menu-item>
-          <el-menu-item>会员统计</el-menu-item>
-        </el-sub-menu>
+        <template v-for="item in userMenus" :key="item.id">
+          <el-sub-menu :index="item.id+''">
+            <template #title>
+              <!--动态组件，可以实现不同的el-sub-menu显示不同的icon，但是需要注意后端返回的结构-->
+              <el-icon>
+                <component :is="item.icon.split('-icon-')[1]"></component>
+              </el-icon>
+              <span>{{item.name}}</span>
+            </template>
+            <template v-for="subItem in item.children" :key="subItem.id">
+              <el-menu-item :index="subItem.id+''">{{subItem.name}}</el-menu-item>
+            </template>
+          </el-sub-menu>
+        </template>
       </el-menu>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import useLoginStore from "@/store/login/login.ts";
+
+//1.获取登录那边store的信息
+const LoginStore = useLoginStore();
+const userMenus = LoginStore.userMenus;
+console.log(userMenus);
+
+const handleOpen = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const handleClose = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+</script>
 
 <style scoped lang="less">
 .main-menu {
