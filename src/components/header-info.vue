@@ -25,9 +25,18 @@
         >
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>Action 1</el-dropdown-item>
-            <el-dropdown-item>Action 2</el-dropdown-item>
-            <el-dropdown-item>Action 3</el-dropdown-item>
+            <el-dropdown-item @click="Exit">
+              <el-icon> <CircleClose /> </el-icon>
+              <span>退出系统</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-icon> <CircleClose /> </el-icon>
+              <span>个人信息</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <el-icon> <CircleClose /> </el-icon>
+              <span>修改密码</span>
+            </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -36,7 +45,19 @@
 </template>
 
 <script setup lang="ts">
-import { ChatDotRound, Message, Search } from '@element-plus/icons-vue'
+import {
+  ChatDotRound,
+  CircleClose,
+  Message,
+  Search
+} from '@element-plus/icons-vue'
+import { localCache } from '@/utils/cache.ts'
+import { LOGIN_TOKEN } from '@/global/global_variables'
+import router from '@/router'
+function Exit() {
+  localCache.removeCache(LOGIN_TOKEN)
+  router.push('/login')
+}
 </script>
 
 <style scoped lang="less">
@@ -56,6 +77,14 @@ import { ChatDotRound, Message, Search } from '@element-plus/icons-vue'
   cursor: pointer;
   .name {
     margin-left: 5px;
+  }
+}
+
+/*注意:要global获取全局类，因为el-dropdown-menu__item 渲染到页面上后，是不在id="app"那里面的*/
+.info {
+  :global(.el-dropdown-menu__item) {
+    line-height: 36px !important;
+    padding: 6px 22px;
   }
 }
 .operation {
