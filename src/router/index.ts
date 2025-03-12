@@ -22,6 +22,28 @@ const router = createRouter({
     }
   ]
 })
+
+const localRoutes = [
+  {
+    path: '/main/analysis/dashboard',
+    component: () => import('../views/main/analysis/dashboard/dashboard.vue')
+  },
+  {
+    path: '/main/analysis/overview',
+    component: () => import('../views/main/analysis/overview/overview.vue')
+  },
+  {
+    path: '/main/system/role',
+    component: () => import('../views/main/system/role/role.vue')
+  },
+  {
+    path: '/main/system/user',
+    component: () => import('../views/main/system/user/user.vue')
+  }
+]
+router.addRoute('main', localRoutes[0])
+router.addRoute('main', localRoutes[1])
+
 //导航守卫
 //返回值决定导航的路径
 router.beforeEach((to, from) => {
